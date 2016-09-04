@@ -1,9 +1,11 @@
-package com.kkucherenkov.teploapp;
+package com.kkucherenkov.teploapp.homescreen;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.kkucherenkov.teploapp.R;
+
+public class HomescreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
