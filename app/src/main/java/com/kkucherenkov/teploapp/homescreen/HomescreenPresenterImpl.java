@@ -5,4 +5,22 @@ package com.kkucherenkov.teploapp.homescreen;
  */
 
 public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
+
+    private HomescreenContract.View view;
+
+
+    @Override
+    public void viewCreated(HomescreenContract.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void viewDestroyed() {
+        view = null;
+    }
+
+    @Override
+    public void scanButtonClicked() {
+        view.openScanScreen();
+    }
 }

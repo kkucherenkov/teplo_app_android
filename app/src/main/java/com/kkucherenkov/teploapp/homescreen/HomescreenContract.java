@@ -7,9 +7,15 @@ package com.kkucherenkov.teploapp.homescreen;
 public interface HomescreenContract {
     interface View {
 
+        void openScanScreen();
     }
 
     interface Presenter {
 
+        void viewCreated(View view);
+
+        void viewDestroyed();
+
+        void scanButtonClicked();
     }
 }

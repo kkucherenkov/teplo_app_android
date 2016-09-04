@@ -1,5 +1,7 @@
 package com.kkucherenkov.teploapp.dagger;
 
+import com.kkucherenkov.teploapp.homescreen.HomescreenFragment;
+
 import dagger.Component;
 
 /**
@@ -10,4 +12,5 @@ import dagger.Component;
                 ApplicationModule.class
         })
 public interface ApplicationComponent {
+    HomescreenFragment inject(HomescreenFragment fragment);
 }
