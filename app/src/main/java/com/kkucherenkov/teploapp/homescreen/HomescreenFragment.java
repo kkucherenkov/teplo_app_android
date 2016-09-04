@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
+import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomescreenFragment extends Fragment implements HomescreenContract.View {
@@ -24,7 +26,7 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     private String mParam2;
 
     @Inject
-    private HomescreenContract.Presenter presenter;
+    protected HomescreenContract.Presenter presenter;
 
     public HomescreenFragment() {
     }
@@ -53,6 +55,7 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homescreen, container, false);
+        ButterKnife.bind(this, view);
         presenter.viewCreated(this);
         return view;
     }
@@ -74,6 +77,8 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void openScanScreen() {
-
+        if (getActivity() != null) {
+            getActivity().startActivity(ScannerActivity.newIntent(getContext()));
+        }
     }
 }

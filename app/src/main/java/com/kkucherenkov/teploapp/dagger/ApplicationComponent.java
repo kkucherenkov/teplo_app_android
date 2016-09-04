@@ -11,6 +11,7 @@ import dagger.Component;
         modules = {
                 ApplicationModule.class
         })
+@PerApp
 public interface ApplicationComponent {
     HomescreenFragment inject(HomescreenFragment fragment);
 }
