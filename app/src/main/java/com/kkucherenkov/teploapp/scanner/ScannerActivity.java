@@ -17,6 +17,8 @@ import eu.livotov.labs.android.camview.scanner.decoder.zxing.ZXDecoder;
 
 public class ScannerActivity extends AppCompatActivity {
 
+    public static final String QR_CODE_DATA = "qr_code_data";
+
     @BindView(R.id.camview)
     ScannerLiveView camera;
 
@@ -35,12 +37,10 @@ public class ScannerActivity extends AppCompatActivity {
         camera.setScannerViewEventListener(new ScannerLiveView.ScannerViewEventListener() {
             @Override
             public void onScannerStarted(ScannerLiveView scanner) {
-                Toast.makeText(ScannerActivity.this, "Scanner Started", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onScannerStopped(ScannerLiveView scanner) {
-                Toast.makeText(ScannerActivity.this, "Scanner Stopped", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -50,7 +50,10 @@ public class ScannerActivity extends AppCompatActivity {
 
             @Override
             public void onCodeScanned(String data) {
-                Toast.makeText(ScannerActivity.this, data, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra(QR_CODE_DATA, data);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }

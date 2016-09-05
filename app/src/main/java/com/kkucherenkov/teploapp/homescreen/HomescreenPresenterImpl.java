@@ -23,4 +23,9 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
     public void scanButtonClicked() {
         view.openScanScreen();
     }
+
+    @Override
+    public void scanCompleted(String dataString) {
+        
+    }
 }

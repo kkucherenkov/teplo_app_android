@@ -1,6 +1,7 @@
 package com.kkucherenkov.teploapp.homescreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,7 +17,10 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.app.Activity.RESULT_OK;
+
 public class HomescreenFragment extends Fragment implements HomescreenContract.View {
+    public static final int REQUEST_CODE = 12345;
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -76,9 +80,15 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     }
 
     @Override
-    public void openScanScreen() {
-        if (getActivity() != null) {
-            getActivity().startActivity(ScannerActivity.newIntent(getContext()));
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String dataString = data.getStringExtra(ScannerActivity.QR_CODE_DATA);
+            presenter.scanCompleted(dataString);
         }
+    }
+
+    @Override
+    public void openScanScreen() {
+        startActivityForResult(ScannerActivity.newIntent(getContext()), REQUEST_CODE);
     }
 }

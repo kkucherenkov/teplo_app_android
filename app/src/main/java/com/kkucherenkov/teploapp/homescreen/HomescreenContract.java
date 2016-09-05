@@ -17,5 +17,7 @@ public interface HomescreenContract {
         void viewDestroyed();
 
         void scanButtonClicked();
+
+        void scanCompleted(String dataString);
     }
 }
