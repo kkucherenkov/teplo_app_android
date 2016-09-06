@@ -23,6 +23,8 @@
         <activity
             android:name=".scanner.ScannerActivity"
             android:label="@string/title_activity_scanner" />
+
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
     </application>
 
 </manifest>

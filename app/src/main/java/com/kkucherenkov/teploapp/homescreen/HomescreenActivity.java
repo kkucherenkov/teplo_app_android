@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import com.kkucherenkov.teploapp.R;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 public class HomescreenActivity extends AppCompatActivity {
 
     private static final String TAG = HomescreenFragment.class.getSimpleName();
@@ -17,6 +20,8 @@ public class HomescreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(null);
         showHomescreenFragment();
+
+        checkForUpdates();
     }
 
     private void showHomescreenFragment() {
@@ -35,5 +40,36 @@ public class HomescreenActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkForCrashes();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
+    }
+
+    private void unregisterManagers() {
+        UpdateManager.unregister();
     }
 }

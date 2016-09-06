@@ -5,6 +5,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "d209dce7add34db8b684c39b995c84fc"]
         applicationId "com.kkucherenkov.teploapp"
         minSdkVersion 15
         targetSdkVersion 24
@@ -27,9 +28,8 @@ dependencies {
     })
 
     compile('eu.livotov.labs.android:CAMView:2.0.1@aar') { transitive = true }
-
     compile 'com.google.code.gson:gson:2.4'
-
+    compile 'net.hockeyapp.android:HockeySDK:4.1.0'
 
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.google.dagger:dagger:2.0.2'
