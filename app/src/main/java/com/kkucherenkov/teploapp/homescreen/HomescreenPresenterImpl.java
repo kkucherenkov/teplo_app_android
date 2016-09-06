@@ -3,6 +3,8 @@ package com.kkucherenkov.teploapp.homescreen;
 import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.model.BadgeData;
 
+import java.util.Date;
+
 /**
  * Created by Kirill Kucherenkov on 04/09/16.
  */
@@ -34,6 +36,7 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
     @Override
     public void scanCompleted(String dataString) {
         BadgeData badge = gson.fromJson(dataString, BadgeData.class);
+        badge.setStartDate(new Date());
         view.updateVisitors(badge);
     }
 }
