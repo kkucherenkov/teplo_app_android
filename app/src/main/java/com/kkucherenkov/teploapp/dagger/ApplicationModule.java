@@ -47,7 +47,7 @@ public class ApplicationModule {
     @Provides
     @PerApp
     DateFormat providesDateFormat() {
-        return new SimpleDateFormat("", Locale.getDefault());
+        return new SimpleDateFormat("EEE dd/MM/yyyy HH:mm", Locale.getDefault());
     }
 
     @Provides
