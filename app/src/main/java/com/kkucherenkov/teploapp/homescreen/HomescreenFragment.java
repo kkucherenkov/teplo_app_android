@@ -4,16 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
+import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,26 +25,22 @@ import static android.app.Activity.RESULT_OK;
 
 public class HomescreenFragment extends Fragment implements HomescreenContract.View {
     public static final int REQUEST_CODE = 12345;
-    // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     @Inject
     protected HomescreenContract.Presenter presenter;
+    @Inject
+    protected VisitorsAdapter visitorsAdapter;
+
+    @BindView(R.id.visitors_list)
+    protected RecyclerView rvVisitorsList;
 
     public HomescreenFragment() {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static HomescreenFragment newInstance(String param1, String param2) {
+    public static HomescreenFragment newInstance() {
         HomescreenFragment fragment = new HomescreenFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,10 +49,6 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((TeploApp) getActivity().getApplication()).getComponent().inject(this);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,6 +56,9 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homescreen, container, false);
         ButterKnife.bind(this, view);
+        rvVisitorsList.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvVisitorsList.setHasFixedSize(true);
+        rvVisitorsList.setAdapter(visitorsAdapter);
         presenter.viewCreated(this);
         return view;
     }
@@ -90,5 +89,10 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     @Override
     public void openScanScreen() {
         startActivityForResult(ScannerActivity.newIntent(getContext()), REQUEST_CODE);
+    }
+
+    @Override
+    public void updateVisitors(BadgeData badge) {
+        visitorsAdapter.addItem(badge);
     }
 }

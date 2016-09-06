@@ -28,7 +28,7 @@ dependencies {
 
     compile('eu.livotov.labs.android:CAMView:2.0.1@aar') { transitive = true }
 
-
+    compile 'com.google.code.gson:gson:2.4'
 
 
     compile 'com.jakewharton:butterknife:8.4.0'

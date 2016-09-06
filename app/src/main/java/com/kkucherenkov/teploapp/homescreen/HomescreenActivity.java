@@ -29,7 +29,7 @@ public class HomescreenActivity extends AppCompatActivity {
     }
 
     public Fragment getFragment() {
-        return HomescreenFragment.newInstance("", "");
+        return HomescreenFragment.newInstance();
     }
 
     @Override

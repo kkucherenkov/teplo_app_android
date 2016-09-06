@@ -2,8 +2,14 @@ package com.kkucherenkov.teploapp.dagger;
 
 import android.app.Application;
 
+import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
+import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,7 +34,26 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    HomescreenContract.Presenter provideHomeScreenPresenter() {
-        return new HomescreenPresenterImpl();
+    HomescreenContract.Presenter provideHomeScreenPresenter(Gson gson) {
+        return new HomescreenPresenterImpl(gson);
     }
+
+    @Provides
+    @PerApp
+    Gson provideGson() {
+        return new Gson();
+    }
+
+    @Provides
+    @PerApp
+    DateFormat providesDateFormat() {
+        return new SimpleDateFormat("", Locale.getDefault());
+    }
+
+    @Provides
+    @PerApp
+    VisitorsAdapter provideVisitorsAdapter(DateFormat dateFormat) {
+        return new VisitorsAdapter(dateFormat);
+    }
+
 }
