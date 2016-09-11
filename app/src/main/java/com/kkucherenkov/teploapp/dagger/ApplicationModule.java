@@ -3,6 +3,7 @@ package com.kkucherenkov.teploapp.dagger;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.kkucherenkov.teploapp.Data.DBHelper;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
@@ -10,6 +11,8 @@ import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,6 +24,8 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
     private final Application application;
+    private static final String APP_DATE_FORMAT = "AppDateTime";
+    private static final String DB_DATE_FORMAT = "DBDateTime";
 
     public ApplicationModule(Application application) {
         this.application = application;
@@ -46,14 +51,28 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    DateFormat providesDateFormat() {
+    @Named(APP_DATE_FORMAT)
+    DateFormat providesAppDateFormat() {
         return new SimpleDateFormat("EEE dd/MM/yyyy HH:mm", Locale.getDefault());
     }
 
     @Provides
     @PerApp
-    VisitorsAdapter provideVisitorsAdapter(DateFormat dateFormat) {
+    @Named(DB_DATE_FORMAT)
+    DateFormat providesDbDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    }
+
+    @Provides
+    @PerApp
+    VisitorsAdapter provideVisitorsAdapter(@Named(APP_DATE_FORMAT) DateFormat dateFormat) {
         return new VisitorsAdapter(dateFormat);
+    }
+
+    @Provides
+    @PerApp
+    DBHelper providesDBHelper() {
+        return new DBHelper(application.getApplicationContext());
     }
 
 }
