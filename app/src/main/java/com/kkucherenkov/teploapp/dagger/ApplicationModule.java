@@ -3,6 +3,7 @@ package com.kkucherenkov.teploapp.dagger;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.kkucherenkov.teploapp.Data.DBHelper;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
@@ -10,6 +11,8 @@ import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -46,14 +49,28 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    DateFormat providesDateFormat() {
+    @Named("AppDateTime")
+    DateFormat providesAppDateFormat() {
         return new SimpleDateFormat("EEE dd/MM/yyyy HH:mm", Locale.getDefault());
+    }
+
+    @Provides
+    @PerApp
+    @Named("DBDateTime")
+    DateFormat providesDbDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     }
 
     @Provides
     @PerApp
     VisitorsAdapter provideVisitorsAdapter(DateFormat dateFormat) {
         return new VisitorsAdapter(dateFormat);
+    }
+
+    @Provides
+    @PerApp
+    DBHelper providesDBHelper() {
+        return new DBHelper(application.getApplicationContext());
     }
 
 }
