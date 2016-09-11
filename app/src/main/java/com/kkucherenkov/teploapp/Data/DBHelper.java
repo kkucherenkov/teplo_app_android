@@ -14,14 +14,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String ID_COLUMN = "id";
-    private static final String VISITOR_ID_COLUMN = "visitor_id";
-    private static final String NAME_COLUMN = "name";
-    private static final String START_TIME_COLUMN = "start_time";
-    private static final String END_TIME_COLUMN = "end_time";
-    private static final String STOP_CHECK_COLUMN = "stop_check";
-    private static final String STOP_TIME_COLUMN = "stop_time";
-    private static final String VISITORS_TABLE_NAME = "visitors";
+    public static final String ID_COLUMN = "id";
+    public static final String VISITOR_ID_COLUMN = "visitor_id";
+    public static final String NAME_COLUMN = "name";
+    public static final String START_TIME_COLUMN = "start_time";
+    public static final String END_TIME_COLUMN = "end_time";
+    public static final String STOP_CHECK_COLUMN = "stop_check";
+    public static final String STOP_TIME_COLUMN = "stop_time";
+    public static final String VISITORS_TABLE_NAME = "visitors";
 
     private static final String CREATE_VISITORS_TABLE = "CREATE TABLE " + VISITORS_TABLE_NAME + " ("
             + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, "

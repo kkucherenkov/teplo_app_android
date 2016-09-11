@@ -24,6 +24,8 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
     private final Application application;
+    private static final String APP_DATE_FORMAT = "AppDateTime";
+    private static final String DB_DATE_FORMAT = "DBDateTime";
 
     public ApplicationModule(Application application) {
         this.application = application;
@@ -49,21 +51,21 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    @Named("AppDateTime")
+    @Named(APP_DATE_FORMAT)
     DateFormat providesAppDateFormat() {
         return new SimpleDateFormat("EEE dd/MM/yyyy HH:mm", Locale.getDefault());
     }
 
     @Provides
     @PerApp
-    @Named("DBDateTime")
+    @Named(DB_DATE_FORMAT)
     DateFormat providesDbDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     }
 
     @Provides
     @PerApp
-    VisitorsAdapter provideVisitorsAdapter(DateFormat dateFormat) {
+    VisitorsAdapter provideVisitorsAdapter(@Named(APP_DATE_FORMAT) DateFormat dateFormat) {
         return new VisitorsAdapter(dateFormat);
     }
 
