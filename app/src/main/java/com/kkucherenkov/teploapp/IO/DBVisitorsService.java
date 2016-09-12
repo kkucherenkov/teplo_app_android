@@ -15,11 +15,11 @@ import rx.schedulers.Schedulers;
  * Created by Kirill Kucherenkov on 12/09/16.
  */
 
-public class VisitorsService implements IVisitorsService {
+public class DBVisitorsService implements IVisitorsService {
 
     private final DBHelper dbHelper;
 
-    public VisitorsService(DBHelper dbHelper) {
+    public DBVisitorsService(DBHelper dbHelper) {
         this.dbHelper = dbHelper;
     }
 

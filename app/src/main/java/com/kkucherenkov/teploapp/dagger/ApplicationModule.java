@@ -5,7 +5,7 @@ import android.app.Application;
 import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.Data.DBHelper;
 import com.kkucherenkov.teploapp.IO.IVisitorsService;
-import com.kkucherenkov.teploapp.IO.VisitorsService;
+import com.kkucherenkov.teploapp.IO.DBVisitorsService;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
@@ -80,7 +80,7 @@ public class ApplicationModule {
     @Provides
     @PerApp
     IVisitorsService providesVisitorsService(DBHelper dbHelper) {
-        return new VisitorsService(dbHelper);
+        return new DBVisitorsService(dbHelper);
     }
 
 }
