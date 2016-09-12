@@ -1,9 +1,10 @@
 package com.kkucherenkov.teploapp.homescreen;
 
 import com.google.gson.Gson;
+import com.kkucherenkov.teploapp.IO.IVisitorsService;
 import com.kkucherenkov.teploapp.model.BadgeData;
 
-import java.util.Date;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Kirill Kucherenkov on 04/09/16.
@@ -13,9 +14,11 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
 
     private HomescreenContract.View view;
     private final Gson gson;
+    private final IVisitorsService visitorsService;
 
-    public HomescreenPresenterImpl(Gson gson) {
+    public HomescreenPresenterImpl(IVisitorsService visitorsService, Gson gson) {
         this.gson = gson;
+        this.visitorsService = visitorsService;
     }
 
     @Override
@@ -36,7 +39,17 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
     @Override
     public void scanCompleted(String dataString) {
         BadgeData badge = gson.fromJson(dataString, BadgeData.class);
-        badge.setStartDate(new Date());
-        view.updateVisitors(badge);
+        visitorsService.getVisitor(badge.getId())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe((visitorDetails -> {
+                    if (visitorDetails == null) {
+                        view.showNewVisitorScreen(badge);
+                    } else {
+                        view.showEndOfVisitScreen(visitorDetails);
+                    }
+                }), (throwable -> {
+                }), (() -> {
+                }));
+
     }
 }

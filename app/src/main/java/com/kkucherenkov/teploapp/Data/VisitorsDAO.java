@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import rx.Observable;
-import rx.Subscriber;
-
 /**
  * Created by Kirill Kucherenkov on 11/09/16.
  */
@@ -23,7 +20,7 @@ public class VisitorsDAO {
     private final DBHelper dbHelper;
     private final SimpleDateFormat dateFormat;
 
-    public VisitorsDAO(DBHelper dbHelper, SimpleDateFormat dateFormat) {
+    VisitorsDAO(DBHelper dbHelper, SimpleDateFormat dateFormat) {
         this.dbHelper = dbHelper;
         this.dateFormat = dateFormat;
     }
@@ -74,7 +71,7 @@ public class VisitorsDAO {
                             DBHelper.STOP_CHECK_COLUMN,
                             DBHelper.STOP_TIME_COLUMN
                     },
-                    DBHelper.VISITOR_ID_COLUMN + " = ?", new String[]{"visitorID"},
+                    DBHelper.VISITOR_ID_COLUMN + " = ?", new String[]{visitorID},
                     null, null, null);
 
             VisitorDetails visitorDetails = null;
@@ -130,20 +127,4 @@ public class VisitorsDAO {
             return result;
         };
     }
-
-    public static <T> Observable<T> makeObservable(final Callable<T> func) {
-        return Observable.create(
-                new Observable.OnSubscribe<T>() {
-                    @Override
-                    public void call(Subscriber<? super T> subscriber) {
-                        try {
-                            subscriber.onNext(func.call());
-                        } catch (Exception ex) {
-                            subscriber.onError(ex);
-                        }
-                    }
-                });
-    }
-
-
 }

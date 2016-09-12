@@ -92,7 +92,7 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     }
 
     @Override
-    public void updateVisitors(BadgeData badge) {
+    public void showNewVisitorScreen(BadgeData badge) {
         visitorsAdapter.addItem(badge);
     }
 }
