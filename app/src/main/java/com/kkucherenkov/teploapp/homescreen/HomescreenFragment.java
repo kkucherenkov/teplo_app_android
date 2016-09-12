@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
 import com.kkucherenkov.teploapp.model.BadgeData;
+import com.kkucherenkov.teploapp.model.VisitorDetails;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
 import javax.inject.Inject;
@@ -92,7 +93,12 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     }
 
     @Override
-    public void updateVisitors(BadgeData badge) {
+    public void showNewVisitorScreen(BadgeData badge) {
         visitorsAdapter.addItem(badge);
+    }
+
+    @Override
+    public void showEndOfVisitScreen(VisitorDetails visitorDetails) {
+        
     }
 }

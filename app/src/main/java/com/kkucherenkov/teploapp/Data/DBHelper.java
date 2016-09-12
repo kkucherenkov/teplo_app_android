@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 /**
  * Created by Kirill Kucherenkov on 11/09/16.
  */
@@ -13,6 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "teplo_app.db";
 
     private static final int DATABASE_VERSION = 1;
+
+    private final DateFormat dateFormat;
 
     public static final String ID_COLUMN = "id";
     public static final String VISITOR_ID_COLUMN = "visitor_id";
@@ -33,8 +38,9 @@ public class DBHelper extends SQLiteOpenHelper {
             + STOP_TIME_COLUMN + " INTEGER" + ");";
 
 
-    public DBHelper(Context context) {
+    public DBHelper(Context context, DateFormat dateFormat) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.dateFormat = dateFormat;
     }
 
     @Override
@@ -51,5 +57,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public VisitorsDAO getVisitorsDao() {
+        return new VisitorsDAO(this, (SimpleDateFormat) dateFormat);
     }
 }

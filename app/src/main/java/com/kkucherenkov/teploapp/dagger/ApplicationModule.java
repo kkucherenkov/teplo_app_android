@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.Data.DBHelper;
+import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.IO.DBVisitorsService;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
@@ -39,8 +41,8 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    HomescreenContract.Presenter provideHomeScreenPresenter(Gson gson) {
-        return new HomescreenPresenterImpl(gson);
+    HomescreenContract.Presenter provideHomeScreenPresenter(IVisitorsService visitorsService, Gson gson) {
+        return new HomescreenPresenterImpl(visitorsService, gson);
     }
 
     @Provides
@@ -71,8 +73,14 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    DBHelper providesDBHelper() {
-        return new DBHelper(application.getApplicationContext());
+    DBHelper providesDBHelper(@Named(DB_DATE_FORMAT) DateFormat dateFormat) {
+        return new DBHelper(application.getApplicationContext(), dateFormat);
+    }
+
+    @Provides
+    @PerApp
+    IVisitorsService providesVisitorsService(DBHelper dbHelper) {
+        return new DBVisitorsService(dbHelper);
     }
 
 }
