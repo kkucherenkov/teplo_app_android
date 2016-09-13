@@ -14,6 +14,7 @@ import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
 import javax.inject.Inject;
@@ -38,12 +39,8 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     public HomescreenFragment() {
     }
 
-    // TODO: Rename and change types and number of parameters
     public static HomescreenFragment newInstance() {
-        HomescreenFragment fragment = new HomescreenFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new HomescreenFragment();
     }
 
     @Override
@@ -94,11 +91,14 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void showNewVisitorScreen(BadgeData badge) {
-        visitorsAdapter.addItem(badge);
+        NewVisitorFragmentDialog.
+                newInstance(badge).
+                show(getFragmentManager().beginTransaction(),
+                        NewVisitorFragmentDialog.class.getSimpleName());
     }
 
     @Override
     public void showEndOfVisitScreen(VisitorDetails visitorDetails) {
-        
+
     }
 }

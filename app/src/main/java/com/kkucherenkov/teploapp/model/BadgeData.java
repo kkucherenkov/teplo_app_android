@@ -3,13 +3,14 @@ package com.kkucherenkov.teploapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Kirill Kucherenkov on 05/09/16.
  */
 
-public class BadgeData {
+public class BadgeData implements Serializable {
 
     @SerializedName("type")
     @Expose

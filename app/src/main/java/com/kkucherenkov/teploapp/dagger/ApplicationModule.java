@@ -26,8 +26,8 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
     private final Application application;
-    private static final String APP_DATE_FORMAT = "AppDateTime";
-    private static final String DB_DATE_FORMAT = "DBDateTime";
+    public static final String APP_DATE_FORMAT = "AppDateTime";
+    public static final String DB_DATE_FORMAT = "DBDateTime";
 
     public ApplicationModule(Application application) {
         this.application = application;
