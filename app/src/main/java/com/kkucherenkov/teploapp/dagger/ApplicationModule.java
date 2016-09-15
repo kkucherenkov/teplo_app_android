@@ -9,12 +9,14 @@ import com.kkucherenkov.teploapp.IO.DBVisitorsService;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,7 +28,7 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
     private final Application application;
-    private static final String APP_DATE_FORMAT = "AppDateTime";
+    public static final String APP_DATE_FORMAT = "AppDateTime";
     private static final String DB_DATE_FORMAT = "DBDateTime";
 
     public ApplicationModule(Application application) {
@@ -81,6 +83,12 @@ public class ApplicationModule {
     @PerApp
     IVisitorsService providesVisitorsService(DBHelper dbHelper) {
         return new DBVisitorsService(dbHelper);
+    }
+
+    @Provides
+    @PerApp
+    NewVisitorContract.Presenter providesNewVisitorsDialogPresenter(IVisitorsService visitorsService, Gson gson) {
+        return new HomescreenPresenterImpl(visitorsService, gson);
     }
 
 }

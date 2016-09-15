@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kkucherenkov.teploapp.R;
-import com.kkucherenkov.teploapp.model.BadgeData;
+import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,29 +24,11 @@ import butterknife.ButterKnife;
 public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.ViewHolder> {
 
     private DateFormat dateFormat;
-    private ArrayList<BadgeData> items;
+    private ArrayList<VisitorDetails> items;
 
     public VisitorsAdapter(DateFormat dateFormat) {
         this.dateFormat = dateFormat;
         items = new ArrayList<>();
-    }
-
-    public void addItem(BadgeData data) {
-        int previousItem = -1;
-        for (int i = 0; i < items.size(); i++) {
-            BadgeData item = items.get(i);
-            if (item.getId().equals(data.getId())) {
-                previousItem = i;
-                break;
-            }
-        }
-        if (previousItem < 0) {
-            items.add(data);
-            notifyItemInserted(items.size() - 1);
-        } else {
-            items.remove(previousItem);
-            notifyItemRemoved(previousItem);
-        }
     }
 
     @Override
@@ -66,6 +49,12 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.ViewHo
         return items.size();
     }
 
+    void setItems(List<VisitorDetails> visitors) {
+        items.clear();
+        items.addAll(visitors);
+        notifyDataSetChanged();
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_fullname)
         TextView tvFullname;
@@ -73,14 +62,17 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.ViewHo
         TextView tvStartDate;
         private DateFormat dateFormat;
 
+        private VisitorDetails details;
+
         ViewHolder(View itemView, DateFormat dateFormat) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             this.dateFormat = dateFormat;
         }
 
-        void bind(@NonNull BadgeData data) {
-            tvFullname.setText(data.getFullname());
+        void bind(@NonNull VisitorDetails data) {
+            details = data;
+            tvFullname.setText(data.getFullName());
             String date = dateFormat.format(data.getStartDate());
             tvStartDate.setText(date);
         }
