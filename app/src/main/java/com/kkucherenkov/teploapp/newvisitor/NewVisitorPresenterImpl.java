@@ -1,5 +1,6 @@
 package com.kkucherenkov.teploapp.newvisitor;
 
+import com.kkucherenkov.teploapp.Data.DBHelper;
 import com.kkucherenkov.teploapp.model.BadgeData;
 
 import java.util.Date;
@@ -11,6 +12,11 @@ import java.util.Date;
 public class NewVisitorPresenterImpl implements NewVisitorContract.Presenter {
 
     private NewVisitorContract.View view;
+    private final DBHelper dbHelper;
+
+    public NewVisitorPresenterImpl(DBHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     @Override
     public void viewCreated(NewVisitorContract.View view, BadgeData data) {

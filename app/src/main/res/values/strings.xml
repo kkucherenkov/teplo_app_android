@@ -10,4 +10,9 @@
     <string name="hint_stop_check">stop check</string>
     <string name="hint_stop_time">stop time</string>
     <string name="new_visitor_title">New Visitor</string>
+    <string name="visitor_one_btn_title">Visitor One</string>
+    <string name="visitor_two_btn_title">Visitor two</string>
+    <string name="visitor_three_btn_title">Visitor Three</string>
+    <string name="visitor_four_btn_title">Visitor Four</string>
+    <string name="visitor_five_btn_title">Visitor Five</string>
 </resources>

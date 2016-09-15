@@ -9,6 +9,8 @@ import com.kkucherenkov.teploapp.IO.DBVisitorsService;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorPresenterImpl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,7 +29,7 @@ import dagger.Provides;
 public class ApplicationModule {
     private final Application application;
     public static final String APP_DATE_FORMAT = "AppDateTime";
-    public static final String DB_DATE_FORMAT = "DBDateTime";
+    private static final String DB_DATE_FORMAT = "DBDateTime";
 
     public ApplicationModule(Application application) {
         this.application = application;
@@ -81,6 +83,12 @@ public class ApplicationModule {
     @PerApp
     IVisitorsService providesVisitorsService(DBHelper dbHelper) {
         return new DBVisitorsService(dbHelper);
+    }
+
+    @Provides
+    @PerApp
+    NewVisitorContract.Presenter providesNewVisitorsDialogPresenter(DBHelper dbHelper) {
+        return new NewVisitorPresenterImpl(dbHelper);
     }
 
 }

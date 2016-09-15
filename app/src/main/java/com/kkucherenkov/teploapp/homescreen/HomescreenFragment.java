@@ -15,6 +15,7 @@ import com.kkucherenkov.teploapp.TeploApp;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
+import com.kkucherenkov.teploapp.scanner.MockScannerActivity;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
 import javax.inject.Inject;
@@ -86,7 +87,7 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void openScanScreen() {
-        startActivityForResult(ScannerActivity.newIntent(getContext()), REQUEST_CODE);
+        startActivityForResult(MockScannerActivity.newIntent(getContext()), REQUEST_CODE);
     }
 
     @Override
