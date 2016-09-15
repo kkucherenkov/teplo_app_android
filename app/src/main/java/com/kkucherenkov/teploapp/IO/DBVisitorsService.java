@@ -54,6 +54,7 @@ public class DBVisitorsService implements IVisitorsService {
                     public void call(Subscriber<? super T> subscriber) {
                         try {
                             subscriber.onNext(func.call());
+                            subscriber.onCompleted();
                         } catch (Exception ex) {
                             subscriber.onError(ex);
                         }

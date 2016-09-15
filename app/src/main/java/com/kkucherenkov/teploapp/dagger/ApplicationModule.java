@@ -10,13 +10,13 @@ import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
-import com.kkucherenkov.teploapp.newvisitor.NewVisitorPresenterImpl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -87,8 +87,8 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    NewVisitorContract.Presenter providesNewVisitorsDialogPresenter(DBHelper dbHelper) {
-        return new NewVisitorPresenterImpl(dbHelper);
+    NewVisitorContract.Presenter providesNewVisitorsDialogPresenter(IVisitorsService visitorsService, Gson gson) {
+        return new HomescreenPresenterImpl(visitorsService, gson);
     }
 
 }

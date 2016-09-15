@@ -1,6 +1,7 @@
 package com.kkucherenkov.teploapp.newvisitor;
 
 import com.kkucherenkov.teploapp.model.BadgeData;
+import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 import java.util.Date;
 
@@ -16,11 +17,15 @@ public interface NewVisitorContract {
         void setId(String id);
 
         void setStartDate(Date startDate);
+
+        void dismiss();
     }
 
     interface Presenter {
-        void viewCreated(View view, BadgeData data);
+        void viewNewVisitorCreated(View newVisitorView, BadgeData data);
 
-        void viewDestroyed();
+        void viewNewVisitorDestroyed();
+
+        void okButtonClicked(VisitorDetails visitorDetails);
     }
 }

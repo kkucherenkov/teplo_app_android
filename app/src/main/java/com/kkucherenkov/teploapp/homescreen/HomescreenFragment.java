@@ -9,14 +9,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
 import com.kkucherenkov.teploapp.scanner.MockScannerActivity;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,6 +40,8 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @BindView(R.id.visitors_list)
     protected RecyclerView rvVisitorsList;
+    @BindView(R.id.progress_bar)
+    protected ProgressBar progressBar;
 
     public HomescreenFragment() {
     }
@@ -92,14 +98,29 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void showNewVisitorScreen(BadgeData badge) {
-        NewVisitorFragmentDialog.
-                newInstance(badge).
-                show(getFragmentManager().beginTransaction(),
-                        NewVisitorFragmentDialog.class.getSimpleName());
+        NewVisitorFragmentDialog dialog = NewVisitorFragmentDialog.newInstance(badge);
+        dialog.setPresenter((NewVisitorContract.Presenter) presenter);
+        dialog.show(getFragmentManager().beginTransaction(),
+                NewVisitorFragmentDialog.class.getSimpleName());
     }
 
     @Override
     public void showEndOfVisitScreen(VisitorDetails visitorDetails) {
 
+    }
+
+    @Override
+    public void setVisitors(List<VisitorDetails> visitors) {
+        visitorsAdapter.setItems(visitors);
+    }
+
+    @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
     }
 }
