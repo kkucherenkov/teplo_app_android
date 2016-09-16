@@ -37,6 +37,6 @@ public interface HomescreenContract {
 
         void scanCompleted(String dataString);
 
-        void viewNewVisitorCreated(NewVisitorContract.View newVisitorView, BadgeData data);
+        void closeVisitor(VisitorDetails visitorDetails);
     }
 }
