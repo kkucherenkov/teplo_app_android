@@ -61,11 +61,6 @@ public class VisitorsDAO {
     public Callable<VisitorDetails> getVisitor(String visitorID) {
         return () -> {
             SQLiteDatabase database = dbHelper.getReadableDatabase();
-//            Cursor cursor = database.rawQuery(
-//                    "SELECT * " +
-//                            "FROM " + DBHelper.VISITORS_TABLE_NAME +
-//                            " WHERE " + DBHelper.VISITOR_ID_COLUMN + " =  \"" + visitorID + "\"", new String[]{});
-
             Cursor cursor = database.query(DBHelper.VISITORS_TABLE_NAME,
                     new String[]{
                             DBHelper.ID_COLUMN,
@@ -104,9 +99,18 @@ public class VisitorsDAO {
             values.put(DBHelper.END_TIME_COLUMN, "");
             values.put(DBHelper.STOP_CHECK_COLUMN, visitorDetails.getStopCheck());
             values.put(DBHelper.STOP_TIME_COLUMN, visitorDetails.getStopTime());
-            long res = database.insert(DBHelper.VISITORS_TABLE_NAME, DBHelper.END_TIME_COLUMN, values);
-            result = res > -1;
-            database.close();
+
+            database.beginTransaction();
+            try {
+                long res = database.insert(DBHelper.VISITORS_TABLE_NAME, DBHelper.END_TIME_COLUMN, values);
+                result = res > -1;
+                if (result) {
+                    database.setTransactionSuccessful();
+                }
+            } finally {
+                database.endTransaction();
+                database.close();
+            }
             return result;
         };
     }
@@ -116,14 +120,21 @@ public class VisitorsDAO {
             boolean result = false;
             SQLiteDatabase database = dbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
-//            values.put(DBHelper.START_TIME_COLUMN, dateFormat.format(visitorDetails.getStartDate()));
             values.put(DBHelper.END_TIME_COLUMN, dateFormat.format(visitorDetails.getEndDate()));
-            result = database.update(
-                    DBHelper.VISITORS_TABLE_NAME,
-                    values,
-                    DBHelper.VISITOR_ID_COLUMN + " = ? and (" + DBHelper.END_TIME_COLUMN + "=\"\" OR " + DBHelper.END_TIME_COLUMN + " is null )",
-                    new String[]{visitorDetails.getVisitorId()}) > 0;
-            database.close();
+            database.beginTransaction();
+            try {
+                result = database.update(
+                        DBHelper.VISITORS_TABLE_NAME,
+                        values,
+                        DBHelper.VISITOR_ID_COLUMN + " = ? and (" + DBHelper.END_TIME_COLUMN + "=\"\" OR " + DBHelper.END_TIME_COLUMN + " is null )",
+                        new String[]{visitorDetails.getVisitorId()}) > 0;
+                if (result) {
+                    database.setTransactionSuccessful();
+                }
+            } finally {
+                database.endTransaction();
+                database.close();
+            }
             return result;
         };
     }
