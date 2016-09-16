@@ -45,8 +45,8 @@ public class VisitorsDAO {
                 do {
                     VisitorDetails visitorDetails = new VisitorDetails();
                     visitorDetails.setId(cursor.getInt(0));
-                    visitorDetails.setVisitorId(cursor.getString(1));
-                    visitorDetails.setFullName(cursor.getString(2));
+                    visitorDetails.setFullName(cursor.getString(1));
+                    visitorDetails.setVisitorId(cursor.getString(2));
                     visitorDetails.setStartDate(dateFormat.parse(cursor.getString(3)));
                     visitorDetails.setStopCheck(cursor.getInt(5));
                     visitorDetails.setStopTime(cursor.getInt(6));
