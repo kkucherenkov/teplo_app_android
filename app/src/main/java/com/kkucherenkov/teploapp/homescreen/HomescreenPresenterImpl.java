@@ -60,6 +60,19 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter, Ne
     }
 
     @Override
+    public void closeVisitor(VisitorDetails visitorDetails) {
+        visitorsService.updateVisitor(visitorDetails)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((result) -> {
+                    if (result) {
+                        loadData();
+                    }
+                }, (throwable) -> {
+
+                });
+    }
+
+    @Override
     public void viewNewVisitorCreated(NewVisitorContract.View view, BadgeData data) {
         this.newVisitorView = view;
         data.setStartDate(new Date());

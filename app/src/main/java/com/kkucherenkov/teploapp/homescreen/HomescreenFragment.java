@@ -20,6 +20,7 @@ import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
 import com.kkucherenkov.teploapp.scanner.MockScannerActivity;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -106,7 +107,8 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void showEndOfVisitScreen(VisitorDetails visitorDetails) {
-
+        visitorDetails.setEndDate(new Date());
+        presenter.closeVisitor(visitorDetails);
     }
 
     @Override
