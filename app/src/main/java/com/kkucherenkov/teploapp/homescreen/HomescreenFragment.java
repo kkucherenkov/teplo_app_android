@@ -125,4 +125,9 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void setTitle(int titleId) {
+        getActivity().setTitle(titleId);
+    }
 }

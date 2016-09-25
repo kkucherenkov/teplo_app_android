@@ -2,8 +2,6 @@ package com.kkucherenkov.teploapp.homescreen;
 
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
-import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
-import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
 
 import java.util.List;
 
@@ -25,6 +23,8 @@ public interface HomescreenContract {
         void showProgress();
 
         void hideProgress();
+
+        void setTitle(int titleId);
     }
 
     interface Presenter {
