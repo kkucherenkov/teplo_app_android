@@ -2,6 +2,7 @@ package com.kkucherenkov.teploapp.homescreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
+import static com.kkucherenkov.teploapp.homescreen.HomescreenActivity.MOCKED_SCANNER_KEY;
 
 public class HomescreenFragment extends Fragment implements HomescreenContract.View {
     public static final int REQUEST_CODE = 12345;
@@ -94,7 +96,10 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void openScanScreen() {
-        startActivityForResult(MockScannerActivity.newIntent(getContext()), REQUEST_CODE);
+        SharedPreferences settings = getActivity().getSharedPreferences("settings", 0);
+        boolean isChecked = settings.getBoolean(MOCKED_SCANNER_KEY, false);
+        Intent intent = isChecked ? ScannerActivity.newIntent(getContext()) : MockScannerActivity.newIntent(getContext());
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
@@ -124,5 +129,10 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        getActivity().setTitle(titleId);
     }
 }

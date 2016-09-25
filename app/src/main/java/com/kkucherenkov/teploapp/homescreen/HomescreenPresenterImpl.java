@@ -2,6 +2,7 @@ package com.kkucherenkov.teploapp.homescreen;
 
 import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
@@ -29,6 +30,7 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter, Ne
     @Override
     public void viewCreated(HomescreenContract.View view) {
         this.view = view;
+        view.setTitle(R.string.app_name);
         loadData();
     }
 
