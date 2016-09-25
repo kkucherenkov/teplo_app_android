@@ -15,4 +15,5 @@
     <string name="visitor_three_btn_title">Visitor Three</string>
     <string name="visitor_four_btn_title">Visitor Four</string>
     <string name="visitor_five_btn_title">Visitor Five</string>
+    <string name="use_mocked_scanner">mocked scanner</string>
 </resources>
