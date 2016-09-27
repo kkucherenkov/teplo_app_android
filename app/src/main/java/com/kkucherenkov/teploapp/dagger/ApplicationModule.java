@@ -4,19 +4,19 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.Data.DBHelper;
-import com.kkucherenkov.teploapp.IO.IVisitorsService;
 import com.kkucherenkov.teploapp.IO.DBVisitorsService;
+import com.kkucherenkov.teploapp.IO.IVisitorsService;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorContract;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorPresenterImpl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -87,8 +87,8 @@ public class ApplicationModule {
 
     @Provides
     @PerApp
-    NewVisitorContract.Presenter providesNewVisitorsDialogPresenter(IVisitorsService visitorsService, Gson gson) {
-        return new HomescreenPresenterImpl(visitorsService, gson);
+    NewVisitorContract.Presenter providesNewVisitorsPresenter(IVisitorsService visitorsService) {
+        return new NewVisitorPresenterImpl(visitorsService);
     }
 
 }

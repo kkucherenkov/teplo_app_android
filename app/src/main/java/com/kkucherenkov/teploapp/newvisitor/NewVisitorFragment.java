@@ -53,6 +53,7 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.V
     @BindView(R.id.ok_button)
     protected Button okButton;
 
+    @Inject
     protected NewVisitorContract.Presenter presenter;
 
     @Inject
@@ -133,9 +134,5 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.V
             visitorDetails.setStopTime(Integer.parseInt(stopTimeET.getText().toString()));
         }
         presenter.okButtonClicked(visitorDetails);
-    }
-
-    public void setPresenter(NewVisitorContract.Presenter presenter) {
-        this.presenter = presenter;
     }
 }
