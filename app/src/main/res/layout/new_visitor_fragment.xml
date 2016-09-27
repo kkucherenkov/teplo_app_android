@@ -8,7 +8,7 @@
         android:id="@+id/visitor_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/small_padding"
+        android:layout_margin="@dimen/small_padding"
         android:textSize="@dimen/dig_text_size" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/visitor_name"
-        android:padding="@dimen/small_padding"
+        android:layout_margin="@dimen/small_padding"
         android:textSize="@dimen/medium_text_size" />
 
 
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/visitor_id"
-        android:padding="@dimen/small_padding"
+        android:layout_margin="@dimen/small_padding"
         android:text="@string/start_time_is_0"
         android:textColor="@android:color/black" />
 
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/start_time"
-        android:padding="@dimen/small_padding"
+        android:layout_margin="@dimen/small_padding"
         android:text="@string/hint_stop_check"
         android:textSize="@dimen/medium_text_size" />
 

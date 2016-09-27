@@ -33,6 +33,7 @@ import butterknife.OnClick;
 
 public class NewVisitorFragment extends Fragment implements NewVisitorContract.View {
 
+    public static final String BADGE_KEY = "badge";
     @BindView(R.id.visitor_name)
     protected TextView visitorName;
     @BindView(R.id.visitor_id)
@@ -66,7 +67,7 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.V
     public static NewVisitorFragment newInstance(BadgeData data) {
         NewVisitorFragment dialogFragment = new NewVisitorFragment();
         Bundle args = new Bundle();
-        args.putSerializable("badge", data);
+        args.putSerializable(BADGE_KEY, data);
         dialogFragment.setArguments(args);
         return dialogFragment;
     }
@@ -80,9 +81,9 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.V
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.new_visitor_dialog, container, false);
+        View view = inflater.inflate(R.layout.new_visitor_fragment, container, false);
         ButterKnife.bind(this, view);
-        BadgeData data = (BadgeData) getArguments().getSerializable("badge");
+        BadgeData data = (BadgeData) getArguments().getSerializable(BADGE_KEY);
         getActivity().setTitle(R.string.new_visitor_title);
         presenter.viewNewVisitorCreated(this, data);
         return view;

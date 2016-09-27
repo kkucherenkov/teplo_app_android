@@ -3,13 +3,14 @@ package com.kkucherenkov.teploapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Kirill Kucherenkov on 11/09/16.
  */
 
-public class VisitorDetails {
+public class VisitorDetails implements Serializable {
 
     @Expose
     @SerializedName("id")
