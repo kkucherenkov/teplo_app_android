@@ -15,7 +15,7 @@ import net.hockeyapp.android.UpdateManager;
 
 public class HomescreenActivity extends AppCompatActivity {
 
-    private static final String TAG = HomescreenFragment.class.getSimpleName();
+    static final String TAG = HomescreenFragment.class.getSimpleName();
     public static final String MOCKED_SCANNER_KEY = "use_mocked_scanner";
 
     @Override
