@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.Data.DBHelper;
 import com.kkucherenkov.teploapp.IO.DBVisitorsService;
 import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.endofvisit.EndOfVisitContract;
+import com.kkucherenkov.teploapp.endofvisit.EndOfVisitPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;
 import com.kkucherenkov.teploapp.homescreen.HomescreenPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.VisitorsAdapter;
@@ -89,6 +91,12 @@ public class ApplicationModule {
     @PerApp
     NewVisitorContract.Presenter providesNewVisitorsPresenter(IVisitorsService visitorsService) {
         return new NewVisitorPresenterImpl(visitorsService);
+    }
+
+    @Provides
+    @PerApp
+    EndOfVisitContract.Presenter providesEndOfVisitPresenter(IVisitorsService visitorsService) {
+        return new EndOfVisitPresenterImpl(visitorsService);
     }
 
 }

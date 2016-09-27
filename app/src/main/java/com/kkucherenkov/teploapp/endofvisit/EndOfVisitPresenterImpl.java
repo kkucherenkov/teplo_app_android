@@ -1,0 +1,44 @@
+package com.kkucherenkov.teploapp.endofvisit;
+
+import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.model.VisitorDetails;
+
+import rx.android.schedulers.AndroidSchedulers;
+
+/**
+ * Created by kirillkucherenkov on 28/09/2016.
+ */
+
+public class EndOfVisitPresenterImpl implements EndOfVisitContract.Presenter {
+    private final IVisitorsService visitorsService;
+    private VisitorDetails visitorDetails;
+    private EndOfVisitContract.View view;
+
+    public EndOfVisitPresenterImpl(IVisitorsService visitorsService) {
+        this.visitorsService = visitorsService;
+    }
+
+    @Override
+    public void viewEndOfVisitCreated(EndOfVisitContract.View endOfVisitView, VisitorDetails data) {
+        visitorDetails = data;
+        this.view = endOfVisitView;
+    }
+
+    @Override
+    public void viewEndOfVisitDestroyed() {
+        this.view = null;
+    }
+
+    @Override
+    public void okButtonClicked() {
+        visitorsService.updateVisitor(visitorDetails)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((result) -> {
+                    if (result) {
+                        view.closeFragment();
+                    }
+                }, (throwable) -> {
+
+                });
+    }
+}

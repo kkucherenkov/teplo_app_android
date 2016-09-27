@@ -112,13 +112,13 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.V
     }
 
     @Override
-    public void dismiss() {
+    public void closeFragment() {
         getActivity().onBackPressed();
     }
 
     @OnClick(R.id.cancel_button)
     public void cancelBtnClick() {
-        dismiss();
+        closeFragment();
     }
 
     @OnClick(R.id.ok_button)

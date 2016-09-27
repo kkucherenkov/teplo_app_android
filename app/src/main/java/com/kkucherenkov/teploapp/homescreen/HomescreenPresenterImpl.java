@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.kkucherenkov.teploapp.IO.IVisitorsService;
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.model.BadgeData;
-import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -55,19 +54,6 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
                 }), (() -> {
                 }));
 
-    }
-
-    @Override
-    public void closeVisitor(VisitorDetails visitorDetails) {
-        visitorsService.updateVisitor(visitorDetails)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((result) -> {
-                    if (result) {
-                        loadData();
-                    }
-                }, (throwable) -> {
-
-                });
     }
 
     private void loadData() {

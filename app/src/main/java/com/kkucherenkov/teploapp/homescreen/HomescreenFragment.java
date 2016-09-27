@@ -14,13 +14,13 @@ import android.widget.ProgressBar;
 
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
+import com.kkucherenkov.teploapp.endofvisit.EndOfVisitFragment;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragment;
 import com.kkucherenkov.teploapp.scanner.MockScannerActivity;
 import com.kkucherenkov.teploapp.scanner.ScannerActivity;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -115,8 +115,14 @@ public class HomescreenFragment extends Fragment implements HomescreenContract.V
 
     @Override
     public void showEndOfVisitScreen(VisitorDetails visitorDetails) {
-        visitorDetails.setEndDate(new Date());
-        presenter.closeVisitor(visitorDetails);
+        EndOfVisitFragment fragment = EndOfVisitFragment.newInstance(visitorDetails);
+        if (getActivity().getSupportFragmentManager().findFragmentByTag(EndOfVisitFragment.class.getSimpleName()) == null) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_root, fragment, EndOfVisitFragment.class.getSimpleName())
+                    .addToBackStack(HomescreenActivity.TAG)
+                    .commit();
+        }
     }
 
     @Override

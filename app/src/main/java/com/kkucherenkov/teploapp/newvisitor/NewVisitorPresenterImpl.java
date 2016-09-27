@@ -42,7 +42,7 @@ public class NewVisitorPresenterImpl implements NewVisitorContract.Presenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((result -> {
                     if (result) {
-                        newVisitorView.dismiss();
+                        newVisitorView.closeFragment();
 //                        loadData();
                     }
                 }), (throwable -> {
