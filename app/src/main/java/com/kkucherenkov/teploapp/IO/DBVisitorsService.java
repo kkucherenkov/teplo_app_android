@@ -1,6 +1,6 @@
-package com.kkucherenkov.teploapp.IO;
+package com.kkucherenkov.teploapp.io;
 
-import com.kkucherenkov.teploapp.Data.DBHelper;
+import com.kkucherenkov.teploapp.data.DBHelper;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 import java.util.List;

@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by kirillkucherenkov on 28/09/2016.
  */
 
-public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.View {
+public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.EndOfVisitView {
 
     public static final String VISITOR_DETAILS_KEY = "visitor_details";
 

@@ -1,4 +1,4 @@
-package com.kkucherenkov.teploapp.Data;
+package com.kkucherenkov.teploapp.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;

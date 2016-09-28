@@ -1,4 +1,4 @@
-package com.kkucherenkov.teploapp.IO;
+package com.kkucherenkov.teploapp.io;
 
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 

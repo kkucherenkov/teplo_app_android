@@ -1,4 +1,4 @@
-package com.kkucherenkov.teploapp.Data;
+package com.kkucherenkov.teploapp.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

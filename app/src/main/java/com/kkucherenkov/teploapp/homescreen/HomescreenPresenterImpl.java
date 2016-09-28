@@ -1,7 +1,7 @@
 package com.kkucherenkov.teploapp.homescreen;
 
 import com.google.gson.Gson;
-import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.io.IVisitorsService;
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.model.BadgeData;
 
@@ -13,7 +13,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
 
-    private HomescreenContract.View view;
+    private HomescreenContract.HomeView view;
     private final Gson gson;
     private final IVisitorsService visitorsService;
 
@@ -23,7 +23,7 @@ public class HomescreenPresenterImpl implements HomescreenContract.Presenter {
     }
 
     @Override
-    public void viewCreated(HomescreenContract.View view) {
+    public void viewCreated(HomescreenContract.HomeView view) {
         this.view = view;
         view.setTitle(R.string.app_name);
         loadData();

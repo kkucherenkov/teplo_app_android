@@ -32,7 +32,7 @@ import butterknife.OnClick;
 import static android.app.Activity.RESULT_OK;
 import static com.kkucherenkov.teploapp.homescreen.HomescreenActivity.MOCKED_SCANNER_KEY;
 
-public class HomescreenFragment extends Fragment implements HomescreenContract.View {
+public class HomescreenFragment extends Fragment implements HomescreenContract.HomeView {
     public static final int REQUEST_CODE = 12345;
 
     @Inject

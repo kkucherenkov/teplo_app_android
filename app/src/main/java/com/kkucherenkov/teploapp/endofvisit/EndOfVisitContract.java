@@ -8,7 +8,7 @@ import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 public interface EndOfVisitContract {
 
-    interface View {
+    interface EndOfVisitView {
 
         void setVisitorName(String visitorName);
 
@@ -20,7 +20,7 @@ public interface EndOfVisitContract {
     }
 
     interface Presenter {
-        void viewEndOfVisitCreated(EndOfVisitContract.View endOfVisitView, VisitorDetails visitorDetails);
+        void viewEndOfVisitCreated(EndOfVisitView endOfVisitView, VisitorDetails visitorDetails);
 
         void viewEndOfVisitDestroyed();
 
