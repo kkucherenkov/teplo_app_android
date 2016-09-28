@@ -12,13 +12,23 @@ def vcode = (int) (((new Date().getTime() / 1000) - 1451606400) / 10)
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
+
+    def versionMajor = 0
+    def versionMinor = 4
+    def versionBuild
+    if (System.getenv()["CI"]) {
+        versionBuild = System.getenv()["GREENHOUSE_BUILD_NUMBER"].toInteger()
+    } else {
+        versionBuild = 3
+    }
+
     defaultConfig {
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "d209dce7add34db8b684c39b995c84fc"]
         applicationId "com.kkucherenkov.teploapp"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode vcode
-        versionName "1.0"
+        versionName "${versionMajor}.${versionMinor}.${versionBuild} Dev"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,7 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
