@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.kkucherenkov.teploapp.R;
 import com.kkucherenkov.teploapp.TeploApp;
@@ -13,7 +15,9 @@ import com.kkucherenkov.teploapp.model.VisitorDetails;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by kirillkucherenkov on 28/09/2016.
@@ -22,6 +26,18 @@ import butterknife.ButterKnife;
 public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.View {
 
     public static final String VISITOR_DETAILS_KEY = "visitor_details";
+
+    @BindView(R.id.visitor_name)
+    protected TextView visitorNameTV;
+    @BindView(R.id.visitor_id)
+    protected TextView visitorIdTV;
+    @BindView(R.id.total_cost)
+    protected TextView totalCostTV;
+
+    @BindView(R.id.cancel_button)
+    protected Button cancelButton;
+    @BindView(R.id.ok_button)
+    protected Button okButton;
 
     @Inject
     protected EndOfVisitContract.Presenter presenter;
@@ -55,6 +71,21 @@ public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.V
     }
 
     @Override
+    public void setVisitorName(String visitorName) {
+        visitorNameTV.setText(visitorName);
+    }
+
+    @Override
+    public void setVisitorId(String visitorId) {
+        visitorIdTV.setText(visitorId);
+    }
+
+    @Override
+    public void setTotalCost(String totalCost) {
+        totalCostTV.setText(totalCost);
+    }
+
+    @Override
     public void onDestroyView() {
         presenter.viewEndOfVisitDestroyed();
         super.onDestroyView();
@@ -63,6 +94,16 @@ public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.V
     @Override
     public void closeFragment() {
         getActivity().onBackPressed();
+    }
+
+    @OnClick(R.id.cancel_button)
+    public void cancelBtnClick() {
+        closeFragment();
+    }
+
+    @OnClick(R.id.ok_button)
+    public void okBtnClick() {
+        presenter.okButtonClicked();
     }
 
 }

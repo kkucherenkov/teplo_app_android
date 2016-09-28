@@ -2,6 +2,10 @@ package com.kkucherenkov.teploapp.endofvisit;
 
 import com.kkucherenkov.teploapp.IO.IVisitorsService;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
+import com.kkucherenkov.teploapp.utils.CostCalculator;
+
+import java.util.Date;
+import java.util.Locale;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -21,7 +25,12 @@ public class EndOfVisitPresenterImpl implements EndOfVisitContract.Presenter {
     @Override
     public void viewEndOfVisitCreated(EndOfVisitContract.View endOfVisitView, VisitorDetails data) {
         visitorDetails = data;
+        visitorDetails.setEndDate(new Date());
         this.view = endOfVisitView;
+
+        view.setVisitorName(data.getFullName());
+        view.setVisitorId(data.getVisitorId());
+        view.setTotalCost(String.format(Locale.getDefault(), "%d rub", CostCalculator.getTotalCost(data.getStartDate(), data.getEndDate())));
     }
 
     @Override

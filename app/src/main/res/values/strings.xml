@@ -16,4 +16,6 @@
     <string name="visitor_four_btn_title">Visitor Four</string>
     <string name="visitor_five_btn_title">Visitor Five</string>
     <string name="use_mocked_scanner">mocked scanner</string>
+    <string name="total">Total:</string>
+    <string name="back">back</string>
 </resources>

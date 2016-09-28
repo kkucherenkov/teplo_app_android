@@ -10,6 +10,12 @@ public interface EndOfVisitContract {
 
     interface View {
 
+        void setVisitorName(String visitorName);
+
+        void setVisitorId(String visitorId);
+
+        void setTotalCost(String totalCost);
+
         void closeFragment();
     }
 
