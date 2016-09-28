@@ -85,6 +85,9 @@ public class NewVisitorFragment extends Fragment implements NewVisitorContract.N
         ButterKnife.bind(this, view);
         BadgeData data = (BadgeData) getArguments().getSerializable(BADGE_KEY);
         getActivity().setTitle(R.string.new_visitor_title);
+        if (getActivity() != null && getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         presenter.viewNewVisitorCreated(this, data);
         return view;
     }

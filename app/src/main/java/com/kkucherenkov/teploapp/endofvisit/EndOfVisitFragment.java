@@ -65,7 +65,9 @@ public class EndOfVisitFragment extends Fragment implements EndOfVisitContract.E
         View view = inflater.inflate(R.layout.end_of_visit_fragment, container, false);
         ButterKnife.bind(this, view);
         VisitorDetails visitorDetails = (VisitorDetails) getArguments().getSerializable(VISITOR_DETAILS_KEY);
-
+        if (getActivity() != null && getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         presenter.viewEndOfVisitCreated(this, visitorDetails);
         return view;
     }
