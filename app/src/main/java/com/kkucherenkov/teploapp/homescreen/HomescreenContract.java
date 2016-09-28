@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface HomescreenContract {
-    interface View {
+    interface HomeView {
 
         void openScanScreen();
 
@@ -29,7 +29,7 @@ public interface HomescreenContract {
 
     interface Presenter {
 
-        void viewCreated(View view);
+        void viewCreated(HomeView view);
 
         void viewDestroyed();
 

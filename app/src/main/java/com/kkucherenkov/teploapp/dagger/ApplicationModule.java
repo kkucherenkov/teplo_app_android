@@ -3,9 +3,9 @@ package com.kkucherenkov.teploapp.dagger;
 import android.app.Application;
 
 import com.google.gson.Gson;
-import com.kkucherenkov.teploapp.Data.DBHelper;
-import com.kkucherenkov.teploapp.IO.DBVisitorsService;
-import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.data.DBHelper;
+import com.kkucherenkov.teploapp.io.DBVisitorsService;
+import com.kkucherenkov.teploapp.io.IVisitorsService;
 import com.kkucherenkov.teploapp.endofvisit.EndOfVisitContract;
 import com.kkucherenkov.teploapp.endofvisit.EndOfVisitPresenterImpl;
 import com.kkucherenkov.teploapp.homescreen.HomescreenContract;

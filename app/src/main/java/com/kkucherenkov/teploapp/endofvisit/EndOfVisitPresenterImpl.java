@@ -1,6 +1,6 @@
 package com.kkucherenkov.teploapp.endofvisit;
 
-import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.io.IVisitorsService;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 import com.kkucherenkov.teploapp.utils.CostCalculator;
 
@@ -16,14 +16,14 @@ import rx.android.schedulers.AndroidSchedulers;
 public class EndOfVisitPresenterImpl implements EndOfVisitContract.Presenter {
     private final IVisitorsService visitorsService;
     private VisitorDetails visitorDetails;
-    private EndOfVisitContract.View view;
+    private EndOfVisitContract.EndOfVisitView view;
 
     public EndOfVisitPresenterImpl(IVisitorsService visitorsService) {
         this.visitorsService = visitorsService;
     }
 
     @Override
-    public void viewEndOfVisitCreated(EndOfVisitContract.View endOfVisitView, VisitorDetails data) {
+    public void viewEndOfVisitCreated(EndOfVisitContract.EndOfVisitView endOfVisitView, VisitorDetails data) {
         visitorDetails = data;
         visitorDetails.setEndDate(new Date());
         this.view = endOfVisitView;

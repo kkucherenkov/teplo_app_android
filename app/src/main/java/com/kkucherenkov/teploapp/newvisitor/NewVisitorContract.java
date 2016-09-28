@@ -10,7 +10,7 @@ import java.util.Date;
  */
 
 public interface NewVisitorContract {
-    interface View {
+    interface NewVisitorView {
 
         void setName(String fullname);
 
@@ -22,7 +22,7 @@ public interface NewVisitorContract {
     }
 
     interface Presenter {
-        void viewNewVisitorCreated(View newVisitorView, BadgeData data);
+        void viewNewVisitorCreated(NewVisitorView newVisitorView, BadgeData data);
 
         void viewNewVisitorDestroyed();
 

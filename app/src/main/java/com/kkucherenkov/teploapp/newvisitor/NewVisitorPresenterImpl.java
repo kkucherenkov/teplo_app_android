@@ -1,6 +1,6 @@
 package com.kkucherenkov.teploapp.newvisitor;
 
-import com.kkucherenkov.teploapp.IO.IVisitorsService;
+import com.kkucherenkov.teploapp.io.IVisitorsService;
 import com.kkucherenkov.teploapp.model.BadgeData;
 import com.kkucherenkov.teploapp.model.VisitorDetails;
 
@@ -14,7 +14,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class NewVisitorPresenterImpl implements NewVisitorContract.Presenter {
 
-    private NewVisitorContract.View newVisitorView;
+    private NewVisitorContract.NewVisitorView newVisitorView;
     private final IVisitorsService visitorsService;
 
     public NewVisitorPresenterImpl(IVisitorsService visitorsService) {
@@ -22,7 +22,7 @@ public class NewVisitorPresenterImpl implements NewVisitorContract.Presenter {
     }
 
     @Override
-    public void viewNewVisitorCreated(NewVisitorContract.View view, BadgeData data) {
+    public void viewNewVisitorCreated(NewVisitorContract.NewVisitorView view, BadgeData data) {
         this.newVisitorView = view;
         data.setStartDate(new Date());
         newVisitorView.setName(data.getFullname());

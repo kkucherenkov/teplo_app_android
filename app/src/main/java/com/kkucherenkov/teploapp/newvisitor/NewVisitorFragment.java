@@ -31,7 +31,7 @@ import butterknife.OnClick;
  * Created by Kirill Kucherenkov on 12/09/16.
  */
 
-public class NewVisitorFragment extends Fragment implements NewVisitorContract.View {
+public class NewVisitorFragment extends Fragment implements NewVisitorContract.NewVisitorView {
 
     public static final String BADGE_KEY = "badge";
     @BindView(R.id.visitor_name)
