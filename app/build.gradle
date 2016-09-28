@@ -19,7 +19,7 @@ android {
     if (System.getenv()["CI"]) {
         versionBuild = System.getenv()["GREENHOUSE_BUILD_NUMBER"].toInteger()
     } else {
-        versionBuild = 1
+        versionBuild = 3
     }
 
     defaultConfig {
