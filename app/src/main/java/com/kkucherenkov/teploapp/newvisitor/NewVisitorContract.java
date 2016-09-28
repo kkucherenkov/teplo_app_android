@@ -18,7 +18,7 @@ public interface NewVisitorContract {
 
         void setStartDate(Date startDate);
 
-        void dismiss();
+        void closeFragment();
     }
 
     interface Presenter {

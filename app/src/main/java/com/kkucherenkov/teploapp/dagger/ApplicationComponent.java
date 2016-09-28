@@ -1,7 +1,8 @@
 package com.kkucherenkov.teploapp.dagger;
 
+import com.kkucherenkov.teploapp.endofvisit.EndOfVisitFragment;
 import com.kkucherenkov.teploapp.homescreen.HomescreenFragment;
-import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragmentDialog;
+import com.kkucherenkov.teploapp.newvisitor.NewVisitorFragment;
 
 import dagger.Component;
 
@@ -17,6 +18,7 @@ public interface ApplicationComponent {
 
     HomescreenFragment inject(HomescreenFragment fragment);
 
-    NewVisitorFragmentDialog inject(NewVisitorFragmentDialog fragmentDialog);
+    NewVisitorFragment inject(NewVisitorFragment fragment);
 
+    EndOfVisitFragment inject(EndOfVisitFragment fragment);
 }

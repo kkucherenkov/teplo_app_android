@@ -37,6 +37,5 @@ public interface HomescreenContract {
 
         void scanCompleted(String dataString);
 
-        void closeVisitor(VisitorDetails visitorDetails);
     }
 }
