@@ -10,11 +10,11 @@
     <string name="hint_stop_check">stop check</string>
     <string name="hint_stop_time">stop time</string>
     <string name="new_visitor_title">New Visitor</string>
-    <string name="visitor_one_btn_title">Visitor One</string>
-    <string name="visitor_two_btn_title">Visitor two</string>
-    <string name="visitor_three_btn_title">Visitor Three</string>
-    <string name="visitor_four_btn_title">Visitor Four</string>
-    <string name="visitor_five_btn_title">Visitor Five</string>
+    <string name="visitor_one_btn_title">John Smith</string>
+    <string name="visitor_two_btn_title">John Golt</string>
+    <string name="visitor_three_btn_title">David Bowie</string>
+    <string name="visitor_four_btn_title">Andy Worhole</string>
+    <string name="visitor_five_btn_title">Neo</string>
     <string name="use_mocked_scanner">mocked scanner</string>
     <string name="total">Total:</string>
     <string name="back">back</string>
