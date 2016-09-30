@@ -14,10 +14,15 @@ android {
     buildToolsVersion "24.0.2"
 
     def versionMajor = 0
-    def versionMinor = 4
+    def versionMinor = 5
     def versionBuild
     if (System.getenv()["CI"]) {
-        versionBuild = System.getenv()["GREENHOUSE_BUILD_NUMBER"].toInteger()
+        if (System.getenv()["GREENHOUSE"]) {
+            versionBuild = System.getenv()["GREENHOUSE_BUILD_NUMBER"].toInteger()
+        }
+        if (System.getenv()["CIRCLECI"]) {
+            versionBuild = System.getenv()["CIRCLE_BUILD_NUM"].toInteger()
+        }
     } else {
         versionBuild = 3
     }
