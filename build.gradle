@@ -1,0 +1,43 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'me.tatarka:gradle-retrolambda:3.3.0'
+        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+    configurations.classpath.exclude group: 'com.android.tools.external.lombok'
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//--- build aliases : define a synonym here if you want a shortcut to run multiple targets
+
+def buildAliases = [
+        'all' : ['clean', 'assemble', 'check'],
+        'rebuild' : ['clean', 'assemble']
+]
+def expandedTaskList = []
+
+gradle.startParameter.taskNames.each {
+    expandedTaskList << (buildAliases[it] ? buildAliases[it] : it)
+}
+
+gradle.startParameter.taskNames = expandedTaskList.flatten()
+
+println "\n\n\texpanded task list: ${gradle.startParameter.taskNames }\n\n"
