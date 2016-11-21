@@ -6,7 +6,7 @@
 
     <string name="title_activity_scanner">Сканер</string>
     <string name="toggle_flash">Вспышка</string>
-    <string name="start_time_is_0">Приешкл в %1$s</string>
+    <string name="start_time_is_0">Пришёл в %1$s</string>
     <string name="hint_stop_check">Стоп чек</string>
     <string name="hint_stop_time">Максимальное время</string>
     <string name="new_visitor_title">Новый посетитель</string>
